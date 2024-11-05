@@ -1,7 +1,8 @@
-import requests
+import requests # Library to handle HTTP requests
 
 class FCSForex:
     def __init__(self, api_key=''):
+        # Set the API key, defaulting to "API_KEY" if not provided
         self.api_key = api_key if api_key else "API_KEY"
         self.output = ''  # default is json
         self.output_type = 'JSON'  # Default output type JSON
@@ -10,6 +11,7 @@ class FCSForex:
 
 
     def return_error(self, msg):
+        # Returns a standardized error message in a dictionary format
         return {"status":False,"msg":msg,"Error":"Code or input data error"}
     
 
@@ -23,7 +25,7 @@ class FCSForex:
         return 'id' if cleaned_txt.isdigit() else 'symbol'
 
     def response(self, url, params):
-        """Make a request and return the JSON response."""
+        """Make a request to the given URL and return the JSON response."""
         if not self.check_api_key():
             return self.return_error(self.api_message)
         
