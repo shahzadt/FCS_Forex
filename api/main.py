@@ -1,6 +1,6 @@
 # fcs_forex/main.py
 # Import FCS API Class
-from fcs_forex import FCSForex
+from FCS_Forex.api.fcs_forex import FCSForex
 
 def main():
 
