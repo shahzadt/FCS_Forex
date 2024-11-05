@@ -1,6 +1,6 @@
 # fcs_forex/main.py
 # Import FCS API Class
-from FCS_Forex.api.fcs_forex import FCSForex
+from fcs_forex import FCSForex
 
 def main():
 
@@ -15,20 +15,20 @@ def main():
     # symbol_profile = forex_api.get_profile('1')
     # print("Currency Profile of your desired country :", symbol_profile)
 
-    # symbol_profile = forex_api.get_profile('1,2,3')
+    # symbol_profile = forex_api.get_profile('EUR')
     # print("Currency Profile BY IDS:", symbol_profile)
 
 
     # # Example: Convert currency
-    # conversion_result = forex_api.get_converter('200','JPY/GBP')
+    # conversion_result = forex_api.get_converter(200,'JPY/GBP')
     # print("Conversion Result :", conversion_result)
 
-    conversion_result = forex_api.get_converter(200, 'EUR','USD')
-    print("Conversion Result for different countries:", conversion_result)
+    # conversion_result = forex_api.get_converter(200, 'EUR','USD')
+    # print("Conversion Result for different countries:", conversion_result)
 
     # # Get Latest Price
-    # latest_price = forex_api.get_latest_price("all_forex")
-    # print("Latest Price for all_forex :", latest_price)
+    latest_price = forex_api.get_latest_price(['EUR/USD', 'USD/JPY', 'GBP/CHF'])
+    print("Latest Price for all_forex :", latest_price)
 
     # latest_price = forex_api.get_latest_price("JPY/GBP")
     # print("Latest Price for different countries:", latest_price)
@@ -36,7 +36,7 @@ def main():
     # latest_price = forex_api.get_latest_price(['EUR/USD','JPY/USD'])
     # print("Latest Price for multiple countries:", latest_price)
 
-    # latest_price = forex_api.get_latest_price("87") 
+    # latest_price = forex_api.get_latest_price('87') 
     # print("Latest Price by ID:", latest_price) 
 
 
@@ -115,11 +115,11 @@ def main():
     # economy_calendar_event = forex_api.get_economy_calendar(event='365014')
     # print("Economy Calendar (Event):", economy_calendar_event)
 
-    # economy_calendar_range = forex_api.get_economy_calendar(symbol='USD', from_date='2024-11-04', to_date='2024-11-05')
+    # economy_calendar_range = forex_api.get_economy_calendar(from_date='2024-11-04', to_date='2024-11-05')
     # print("Economy Calendar (Date Range with Symbol):", economy_calendar_range)
 
-    # economy_calendar = forex_api.get_economy_calendar(country='US')
-    # print("Economy Calendar for countries  :", economy_calendar)
+    economy_calendar = forex_api.get_economy_calendar(country='US')
+    print("Economy Calendar for countries  :", economy_calendar)
 
     # # Search API
     # search_results = forex_api.get_search_query("BTC")

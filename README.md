@@ -2,20 +2,21 @@
 
 **Last Updated**: 2024-11-04 (Version 3)
 
-The **FCS Forex API Wrapper** is a Python library for fetching forex quotes and economic data, providing responses in JSON format. This library allows you to retrieve live currency exchange rates, historical data, economic calendar events, and technical indicators.
+
+The **FCS Forex API Wrapper** is a Python library designed to access forex quotes and economic information, delivering responses in JSON format. With this library, you can obtain real-time currency exchange rates, historical records, global economic events, and technical indicators.
 
 ## Features
 
-- Supports over 2000 currency exchange rates.
-- Updates prices every 10 seconds.
-- Access to 25 years of historical data.
-- Includes moving averages (MA) and indicators signals.
-- Economic calendar with global events data.
+- Provides access to over 2,000 currency exchange rates.
+- Updates currency rates every 10 seconds.
+- Offers 25 years of historical data.
+- Contains moving averages (MA) and indicator signals.
+- Includes an economic calendar with worldwide event data.
 
 ## Requirements
 
 - Python >= Python 3.13.0
-- An FCS API key, available [here](https://fcsapi.com/dashboard).
+- An FCS API key, available https://fcsapi.com/dashboard
 
 ## Installation
 
@@ -50,42 +51,50 @@ The default response format is JSON.
    symbols_list = forex_api.get_symbols_list()
 
 2. **Get Latest Price**
-   Retrieve the latest price for specific currency pairs.
+   Retrieve the latest pricing for designated currency pairs or by their ID. If you wish to see the latest prices for all forex currencies, simply use "all_forex" as the symbol.
 
    ```python
-   response = forex_api.get_latest_price(['EUR/USD', 'USD/JPY', 'GBP/CHF'])
+   latest_price = forex_api.get_latest_price(['EUR/USD', 'USD/JPY', 'GBP/CHF'])
+   latest_price = forex_api.get_latest_price('87') 
+   latest_price = forex_api.get_latest_price("all_forex")
    ```
 
 3. **Currency Conversion**
 
-    Convert one currency into another. For example, converting 200 EUR to USD.
+    Convert a currency to a different one. For example, you can convert 200 EUR into USD, or perform the conversion using combined currency symbols differenciate by '/'.
 
     ```python
     conversion_result = forex_api.get_converter(200, 'EUR', 'USD')
+    conversion_result = forex_api.get_converter(200,'JPY/GBP')
     ```
 
 4. **Retrieve Currency Profile**
 
-    Get details for specified currencies by symbol.
+    Access information for specific currencies through either their symbols or IDs.
 
     ```python
+    profile = forex_api.get_profile('EUR')
     profile = forex_api.get_profile('EUR,USD,JPY')
+    profile = forex_api.get_profile('1,2,3')
     ```
 
 5. **Fetch Base Prices**
 
-    Get all quote prices for a specified base currency.
+    Get all quote prices for a specified base currency and you can also specify the type = {forex OR crypto} => default: forex
 
     ```python
     base_prices = forex_api.get_base_prices('EUR')
+    base_prices = forex_api.get_base_prices('EUR','crypto')
     ```
 
 6. **Retrieve Historical Candle Data**
 
-    Get historical OHLC (Open, High, Low, Close) data for specified currency pairs.
+    Access historical OHLC (Open, High, Low, Close) data using designated currency pairs or IDs, and we can additionally view all current prices of forex currencies within a specific timeframe.
 
     ```python
-    candle_data = forex_api.get_last_candle('EUR/USD', '1d')
+    last_candle = forex_api.get_last_candle('EUR/USD', '1d')
+    last_candle = forex_api.get_last_candle("all_forex", '1h')
+    last_candle = forex_api.get_last_candle('1,2,3','1d')
     ```
 
 7. **Access Historical Data**
@@ -99,6 +108,12 @@ The default response format is JSON.
         'from': '2024-10-01',
         'to': '2024-10-31'
     })
+
+     history_data = forex_api.get_history({
+        'id': '3',
+        'period': '1h'
+         })
+    
     ```
 
 8. **Technical Indicators**
@@ -107,16 +122,19 @@ The default response format is JSON.
 
     ```python
     moving_averages = forex_api.get_moving_averages('EUR/USD', '1d')
-    pivot_points = forex_api.get_pivot_points('EUR/USD', '1d')
-    indicators = forex_api.get_technical_indicator('EUR/USD', '1d')
+    pivot_points    = forex_api.get_pivot_points('EUR/USD', '1d')
+    indicators      = forex_api.get_technical_indicator('EUR/USD', '1d')
     ```
 
 9. **Economic Calendar**
 
-    Get economic events within a specified date range for a currency or country.
+   Get economic events that fall within a specified date range, whether by currency, country, event type, or any particular timeframe.
 
     ```python
-    calendar_data = forex_api.get_economy_calendar(symbol='USD', from_date='2024-11-01', to_date='2024-11-05')
+    economy_calendar_event = forex_api.get_economy_calendar(symbol='USD', from_date='2024-11-01', to_date='2024-11-05')
+    economy_calendar_event = forex_api.get_economy_calendar(event='365014')
+    economy_calendar_event = forex_api.get_economy_calendar(from_date='2024-11-04', to_date='2024-11-05')
+    economy_calendar_event = forex_api.get_economy_calendar(country='US')
     ```
 
 10. **Search for Forex Symbols**
@@ -140,4 +158,6 @@ For support, please contact us at [support@fcsapi.com](mailto:support@fcsapi.com
 
 ## License
 
-This project is provided under the MIT License. See the LICENSE file for more details.
+This project comes with the MIT License. Please check the LICENSE file for more information.
+
+
