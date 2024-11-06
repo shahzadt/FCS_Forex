@@ -41,7 +41,7 @@ from fcs_forex import FCSForex
 forex_api = FCSForex(api_key='YOUR_API_KEY')
 
 conversion_result = forex_api.get_converter(200, 'EUR','USD')
-print("Conversion Result for different countries:", conversion_result)
+print("Conversion Result of EUR to USD :", conversion_result)
 ```
 ## API Response Format
 The default response format is JSON.
