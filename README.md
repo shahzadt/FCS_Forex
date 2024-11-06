@@ -40,45 +40,14 @@ from fcs_forex import FCSForex
 # Initialize with your API key
 forex_api = FCSForex(api_key='YOUR_API_KEY')
 
-conversion_result = forex_api.get_converter(200, 'EUR','USD')
-print("Conversion Result of EUR to USD :", conversion_result)
+latest_price = forex_api.get_latest_price("GBP/CHF")
+print("Latest Price of :", latest_price)
 ```
 ## API Response Format
 The default response format is JSON.
 
 ```python
 Response: 
-{ 
-  "id": 1, 
-  "name": "Euro US Dollar", 
-  "symbol": "EUR/USD", 
-  "decimal": 4 
-}, 
-{ 
-  "id": 2, 
-  "name": "Euro Swiss Franc", 
-  "symbol": "EUR/CHF", 
-  "decimal": 4 
-}, 
-{2000+ More Forex Currencies}, 
-```
-
-## Available Methods
-
-1. **Fetch Symbols List**  
-   Get a list of available forex or crypto symbols.
-   ```python
-   symbols_list = forex_api.get_symbols_list()
-
-2. **Get Latest Price**
-   Retrieve the latest pricing for designated currency pairs or by their ID. If you wish to see the latest prices for all forex currencies, simply use "all_forex" as the symbol.
-
-   ```python
-   latest_price = forex_api.get_latest_price(['EUR/USD', 'USD/JPY', 'GBP/CHF'])
-   latest_price = forex_api.get_latest_price('87') 
-   latest_price = forex_api.get_latest_price("all_forex")
-
-   OUTPUT:
    { 
     "s": "GBP/CHF", // Symbol 
     "o": "1.11997", // Open 
@@ -88,11 +57,29 @@ Response:
     "a": "1.11238", // Ask 
     "b": "1.18016", // Bid 
     "sp": "2.2", // Spread 
-    "ch": "+0.0002", // Change in 1 day candle 
-    "cp: "0%, // Change in percentage 
+    "ch": "+0.00384", // Change in 1 day candle 
+    "cp: "+0.34%, // Change in percentage 
     "t": "1730809374", // When update last time Time Unix Format (UTC) 
     "tm": '2024-11-05 12:22:54' // When update last time (UTC) 
-    },
+    }, 
+```
+
+## Available Methods
+
+1. **Fetch Symbols List**  
+
+   Get a list of available forex or crypto symbols.
+   ```python
+   symbols_list = forex_api.get_symbols_list()
+
+2. **Get Latest Price**
+
+   Retrieve the latest pricing for designated currency pairs or by their ID. If you wish to see the latest prices for all forex currencies, simply use "all_forex" as the symbol.
+
+   ```python
+   latest_price = forex_api.get_latest_price(['EUR/USD', 'USD/JPY', 'GBP/CHF'])
+   latest_price = forex_api.get_latest_price('87') 
+   latest_price = forex_api.get_latest_price("all_forex")
    
    ```
 
@@ -172,7 +159,7 @@ Response:
      history_data = forex_api.get_history({
         'id': '3',
         'period': '1h'
-         })
+    })
     
     ```
 
@@ -216,7 +203,7 @@ Response:
 ## Other Resources
 
 - **WebSocket API for Real-Time Prices:** [View Documentation](https://fcsapi.com/document/socket-api)
-- **PHP Library:** [Available on GitHub](https://github.com/fcsapi/Forex-API-PHP/tree/master?tab=readme-ov-file#live-forex-api---php)
+- **PHP Library:** [Available on GitHub](https://github.com/fcsapi/Forex-API-PHP/tree/master?)
 
 ## Support
 

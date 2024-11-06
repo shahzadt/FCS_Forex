@@ -5,12 +5,12 @@ from fcs_forex import FCSForex
 def main():
 
     # An API key, you can get free at https://fcsapi.com/dashboard
-    forex_api = FCSForex(api_key='XxNTqX6UlRgDaIo3N24M')  
+    forex_api = FCSForex(api_key='XxNTqX6UlRgDaIo3N24M') 
 
-    # conversion_result = forex_api.get_converter(200, 'EUR','USD')
-    # print("Conversion Result for different countries:", conversion_result)
-    search_results = forex_api.get_search_query("BTC Dollar",1)
-    print("Search Results: ", search_results)
+    latest_price = forex_api.get_latest_price("GBP/CHF")
+    print("Latest Price of GBP/CHF :", latest_price)
+     
+
 
 """
     Implementation of all methods are listed below:
