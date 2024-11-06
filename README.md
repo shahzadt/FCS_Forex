@@ -1,6 +1,6 @@
 # FCS Forex API Wrapper - Python
 
-**Last Updated**: 2024-11-04 (Version 3)
+**Last Updated**: 2024-11-06 (Version 3)
 
 
 The **FCS Forex API Wrapper** is a Python library designed to access forex quotes and economic information, delivering responses in JSON format. With this library, you can obtain real-time currency exchange rates, historical records, global economic events, and technical indicators.
@@ -41,27 +41,40 @@ from fcs_forex import FCSForex
 forex_api = FCSForex(api_key='YOUR_API_KEY')
 
 latest_price = forex_api.get_latest_price("GBP/CHF")
-print("Latest Price of :", latest_price)
+print("Latest Price of GBP/CHF :", latest_price)
 ```
 ## API Response Format
 The default response format is JSON.
 
 ```python
-Response: 
-   { 
-    "s": "GBP/CHF", // Symbol 
-    "o": "1.11997", // Open 
-    "h": "1.11038", // High 
-    "l": "1.11852", // Low 
-    "c": "1.11997", // Price/Close, Current price 
-    "a": "1.11238", // Ask 
-    "b": "1.18016", // Bid 
-    "sp": "2.2", // Spread 
-    "ch": "+0.00384", // Change in 1 day candle 
-    "cp: "+0.34%, // Change in percentage 
-    "t": "1730809374", // When update last time Time Unix Format (UTC) 
-    "tm": '2024-11-05 12:22:54' // When update last time (UTC) 
-    }, 
+OIUTPUT: 
+{
+  "status": true,
+  "code": 200,
+  "msg": "Successfully",
+  "response": [
+    {
+      "id": "41",
+      "o": "1.11997",
+      "h": "1.12864",
+      "l": "1.12201",
+      "c": "1.12425",
+      "a": "1.12447",
+      "b": "1.12403",
+      "sp": "4.4",
+      "ch": "+0.00428",
+      "cp": "+0.38%",
+      "t": "1730874177",
+      "s": "GBP/CHF",
+      "tm": "2024-11-06 06:22:57"
+    }
+  ],
+  "info": {
+    "server_time": "2024-11-06 06:23:41 UTC",
+    "credit_count": 1
+  }
+}
+
 ```
 
 ## Available Methods
@@ -78,8 +91,25 @@ Response:
 
    ```python
    latest_price = forex_api.get_latest_price(['EUR/USD', 'USD/JPY', 'GBP/CHF'])
-   latest_price = forex_api.get_latest_price('87') 
+   latest_price = forex_api.get_latest_price('20') 
    latest_price = forex_api.get_latest_price("all_forex")
+
+   RESPONSE:
+   {
+    "id": "20",
+    "o": "151.613",
+    "h": "154.343",
+    "l": "151.297",
+    "c": "153.883",
+    "a": "153.894",
+    "b": "153.883",
+    "sp": "1.1",
+    "ch": "+2.27",
+    "cp": "+1.5%",
+    "t": "1730873696",
+    "s": "USD/JPY",
+    "tm": "2024-11-06 06:14:56"
+   }
    
    ```
 
@@ -91,7 +121,7 @@ Response:
     conversion_result = forex_api.get_converter(200, 'EUR', 'USD')
     conversion_result = forex_api.get_converter(200,'JPY/GBP')
 
-    OUTPUT:
+    RESPONSE:
     { 
     "price_1x_EUR": "1.0212418", // 1 EUR = USD 
     "price_1x_USD": "0.9792", // 1 USD = EUR 
@@ -108,7 +138,7 @@ Response:
     profile = forex_api.get_profile('EUR,USD,JPY')
     profile = forex_api.get_profile('1,2,3')
 
-    OUTPUT:
+    RESPONSE:
     {  
     "short_name" : "EUR", 
     "name" : "Euro", 
