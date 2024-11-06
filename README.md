@@ -192,12 +192,12 @@ The default response format is JSON.
 
 ## Other Resources
 
-- **WebSocket API for Real-Time Prices:** [View Documentation](#)
+- **WebSocket API for Real-Time Prices:** [View Documentation](https://fcsapi.com/document/socket-api)
 - **PHP Library:** [Available on GitHub](https://github.com/fcsapi/Forex-API-PHP/tree/master?tab=readme-ov-file#live-forex-api---php)
 
 ## Support
 
-For support, please contact us at [support@fcsapi.com](mailto:support@fcsapi.com) or use the live chat.
+For support, please contact us at [support@fcsapi.com](mailto:support@fcsapi.com) or use the [live chat](https://fcsapi.com/)
 
 ## License
 
