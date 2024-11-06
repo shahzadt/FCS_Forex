@@ -24,7 +24,7 @@ Clone the repository and install any dependencies listed in `requirements.txt`:
 
 ```bash
 git clone <repository_url>
-cd fcs_forex
+cd FCS_Forex
 pip install -r requirements.txt
 ```
 
@@ -39,6 +39,9 @@ from fcs_forex import FCSForex
 
 # Initialize with your API key
 forex_api = FCSForex(api_key='YOUR_API_KEY')
+
+conversion_result = forex_api.get_converter(200, 'EUR','USD')
+print("Conversion Result for different countries:", conversion_result)
 ```
 ## API Response Format
 The default response format is JSON.
@@ -57,6 +60,23 @@ The default response format is JSON.
    latest_price = forex_api.get_latest_price(['EUR/USD', 'USD/JPY', 'GBP/CHF'])
    latest_price = forex_api.get_latest_price('87') 
    latest_price = forex_api.get_latest_price("all_forex")
+
+   OUTPUT:
+   { 
+    "s": "GBP/CHF", // Symbol 
+    "o": "1.11997", // Open 
+    "h": "1.11038", // High 
+    "l": "1.11852", // Low 
+    "c": "1.11997", // Price/Close, Current price 
+    "a": "1.11238", // Ask 
+    "b": "1.18016", // Bid 
+    "sp": "2.2", // Spread 
+    "ch": "+0.0002", // Change in 1 day candle 
+    "cp: "0%, // Change in percentage 
+    "t": "1730809374", // When update last time Time Unix Format (UTC) 
+    "tm": '2024-11-05 12:22:54' // When update last time (UTC) 
+    },
+   
    ```
 
 3. **Currency Conversion**
@@ -66,6 +86,13 @@ The default response format is JSON.
     ```python
     conversion_result = forex_api.get_converter(200, 'EUR', 'USD')
     conversion_result = forex_api.get_converter(200,'JPY/GBP')
+
+    OUTPUT:
+    { 
+    "price_1x_EUR": "1.0212418", // 1 EUR = USD 
+    "price_1x_USD": "0.9792", // 1 USD = EUR 
+    "total": "195.84" // Total Price x amount (Amount * 1 USD) = Total (USD) 
+    }, 
     ```
 
 4. **Retrieve Currency Profile**
@@ -76,6 +103,22 @@ The default response format is JSON.
     profile = forex_api.get_profile('EUR')
     profile = forex_api.get_profile('EUR,USD,JPY')
     profile = forex_api.get_profile('1,2,3')
+
+    OUTPUT:
+    {  
+    "short_name" : "EUR", 
+    "name" : "Euro", 
+    "country" : "Belgium", 
+    "code_n" : "978", 
+    "subunit" : "cent", 
+    "website" : "ecb.europa.eu", 
+    "symbol" : "€", 
+    "bank" : "European Central Bank", 
+    "banknotes" : '€5, €10, €20, €50, €100'
+    "coins" : '1c, 2c, 5c, 10c, 20c, 50c, €1, €2'
+    "icon" : "https://fcsapi.com/assets/images/flags/eur.svg", 
+    "type" : "forex", 
+    }, {and more} 
     ```
 
 5. **Fetch Base Prices**
@@ -150,7 +193,7 @@ The default response format is JSON.
 ## Other Resources
 
 - **WebSocket API for Real-Time Prices:** [View Documentation](#)
-- **PHP Library:** [Available on GitHub](https://github.com)
+- **PHP Library:** [Available on GitHub](https://github.com/fcsapi/Forex-API-PHP/tree/master?tab=readme-ov-file#live-forex-api---php)
 
 ## Support
 
