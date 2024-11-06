@@ -7,9 +7,10 @@ def main():
     # An API key, you can get free at https://fcsapi.com/dashboard
     forex_api = FCSForex(api_key='XxNTqX6UlRgDaIo3N24M')  
 
-    conversion_result = forex_api.get_converter(200, 'EUR','USD')
-    print("Conversion Result for different countries:", conversion_result)
-
+    # conversion_result = forex_api.get_converter(200, 'EUR','USD')
+    # print("Conversion Result for different countries:", conversion_result)
+    search_results = forex_api.get_search_query("BTC Dollar",1)
+    print("Search Results: ", search_results)
 
 """
     Implementation of all methods are listed below:
@@ -129,11 +130,10 @@ def main():
 
     # Search API
     search_results = forex_api.get_search_query("BTC")
-    print("Search Results for 'EUR':", search_results)
-
-    search_results = forex_api.get_search_query("BTC Dollar",1)
-    print("Search Results for 'EUR':", search_results)
+    print("Search Results: ", search_results)
 """
+
+
     
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ The **FCS Forex API Wrapper** is a Python library designed to access forex quote
 ## Requirements
 
 - Python >= Python 3.13.0
-- An FCS API key, available https://fcsapi.com/dashboard
+- An FCS API key, available at https://fcsapi.com/dashboard
 
 ## Installation
 
@@ -45,6 +45,23 @@ print("Conversion Result for different countries:", conversion_result)
 ```
 ## API Response Format
 The default response format is JSON.
+
+```python
+Response: 
+{ 
+  "id": 1, 
+  "name": "Euro US Dollar", 
+  "symbol": "EUR/USD", 
+  "decimal": 4 
+}, 
+{ 
+  "id": 2, 
+  "name": "Euro Swiss Franc", 
+  "symbol": "EUR/CHF", 
+  "decimal": 4 
+}, 
+{2000+ More Forex Currencies}, 
+```
 
 ## Available Methods
 
@@ -171,7 +188,7 @@ The default response format is JSON.
 
 9. **Economic Calendar**
 
-   Get economic events that fall within a specified date range, whether by currency, country, event type, or any particular timeframe.
+    Get economic events that fall within a specified date range, whether by currency, country, event type, or any particular timeframe.
 
     ```python
     economy_calendar_event = forex_api.get_economy_calendar(symbol='USD', from_date='2024-11-01', to_date='2024-11-05')
@@ -182,10 +199,16 @@ The default response format is JSON.
 
 10. **Search for Forex Symbols**
 
-    Search for forex symbols by keyword or criteria.
+    Search for forex symbols by keyword or filter criteria, with options to set strict:
+
+- **strict = {0,1}**
+     - **0**: Search if any keyword exists
+     - **1**: Search only if all keywords exist
 
     ```python
     search_results = forex_api.get_search_query('BTC')
+    search_results = forex_api.get_search_query("BTC Dollar",1)
+    search_results = forex_api.get_search_query("BTC Dollar",0)
 
     ```
 
